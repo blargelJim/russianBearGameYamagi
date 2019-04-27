@@ -479,8 +479,7 @@ CL_BaseMove(usercmd_t *cmd)
 
 	if (!(in_klook.state & 1))
 	{
-		cmd->forwardmove += cl_forwardspeed->value * CL_KeyState(&in_forward);
-		cmd->forwardmove -= cl_forwardspeed->value * CL_KeyState(&in_back);
+		cmd->forwardmove += cl_forwardspeed->value * 1.0f;
 	}
 
 	/* adjust for speed key / running */
