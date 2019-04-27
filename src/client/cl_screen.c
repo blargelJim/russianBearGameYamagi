@@ -999,19 +999,6 @@ SCR_TouchPics(void)
 
 	if (crosshair->value)
 	{
-		if ((crosshair->value > 3) || (crosshair->value < 0))
-		{
-			crosshair->value = 3;
-		}
-
-		Com_sprintf(crosshair_pic, sizeof(crosshair_pic), "ch%i",
-				(int)(crosshair->value));
-		Draw_GetPicSize(&crosshair_width, &crosshair_height, crosshair_pic);
-
-		if (!crosshair_width)
-		{
-			crosshair_pic[0] = 0;
-		}
 	}
 }
 
