@@ -517,6 +517,8 @@ void CL_AddParticles (void);
 void CL_EntityEvent (entity_state_t *ent);
 void CL_TrapParticles (entity_t *ent);
 
+void CL_RusBear_BallonParticles (vec3_t start);
+
 void M_Init (void);
 void M_Keydown (int key);
 void M_Draw (void);

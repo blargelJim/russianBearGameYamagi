@@ -1312,6 +1312,55 @@ CL_DiminishingTrail(vec3_t start, vec3_t end, centity_t *old, int flags)
 }
 
 void
+CL_RusBear_BallonParticles (vec3_t start)
+{
+	int j;
+	cparticle_t *p;
+	float orgscale;
+	float velscale;
+	float time;
+
+	if (!free_particles)
+	{
+		return;
+	}
+	
+	time = (float)cl.time;
+
+	orgscale = 12;
+	velscale = 15;
+
+	for(int i = 0; i < 80; i++)
+	{
+		if (!free_particles)
+		{
+			return;
+		}
+		
+		p = free_particles;
+		free_particles = p->next;
+		p->next = active_particles;
+		active_particles = p;
+		VectorClear(p->accel);
+
+		p->time = time;
+
+		p->alpha = 1.0;
+		p->alphavel = -1.0f / (1 + frandk() * 0.2f);
+		p->color = 4 + (randk() & 7);
+
+		for (j = 0; j < 3; j++)
+		{
+			p->org[j] = start[j] + crandk() * orgscale;
+			p->vel[j] = crandk() * velscale;
+			p->accel[j] = 0;
+		}
+
+		p->vel[2] -= PARTICLE_GRAVITY;
+	}
+}
+
+void
 MakeNormalVectors(vec3_t forward, vec3_t right, vec3_t up)
 {
 	float d;
